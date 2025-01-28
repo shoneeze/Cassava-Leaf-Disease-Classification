@@ -2,7 +2,14 @@
 This project focuses on detecting and classifying cassava leaf diseases using ML. The EfficientNetB0 model is trained on a dataset with five classes of diseases to help farmers improve crop yield through early detection.
 
 ---
+### Business Context
 
+Cassava is a staple crop for over 800 million people worldwide. However, diseases like Mosaic and Bacterial Blight can reduce yields by up to 40%, impacting food security and livelihoods.
+
+This project proposes a deep learning model that:
+- Identifies leaf diseases with ~85% accuracy.
+- Helps farmers take timely actions, reducing losses.
+---
 ## Dataset
 The dataset contains images of cassava leaves classified into five categories:
 1. Healthy
