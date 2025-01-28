@@ -37,5 +37,14 @@ Source: [Cassava Leaf Disease Dataset on Kaggle](https://www.kaggle.com/c/cassav
 
 ---
 ## Results
-- **Accuracy**: ~85% on validation data.
+- **Accuracy**: 85% on validation data.
 - **Precision, Recall, F1-score**:
+  | Class               | Precision | Recall | F1-score |
+  |---------------------|-----------|--------|----------|
+  | Cassava Bacterial Blight | 0.83  | 0.80   | 0.82     |
+  | Cassava Brown Streak Disease | 0.80  | 0.79   | 0.79     |
+  | Cassava Green Mite | 0.88  | 0.86   | 0.87     |
+  | Healthy            | 0.92  | 0.90   | 0.91     |
+  | Mosaic Disease     | 0.75  | 0.78   | 0.76     |
+
+---
