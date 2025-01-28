@@ -23,11 +23,17 @@ Source: [Cassava Leaf Disease Dataset on Kaggle](https://www.kaggle.com/c/cassav
 ---
 
 ## Pipeline
-1. **Data Exploration**: Visualized class distribution and sample images.
-2. **Preprocessing**: Resized images to 256x256, applied augmentation, and normalized pixel values.
-3. **Model Training**: Used pre-trained EfficientNetB0 with dropout and class weighting.
-4. **Evaluation**: Analyzed confusion matrix and classification metrics.
-5. **Predictions**: Deployed the model to classify unseen images.
+1. **Exploratory Data Analysis**:
+   - Visualized class imbalance and confirmed uniform image dimensions.
+2. **Preprocessing**:
+   - Resized images to 256x256, applied data augmentation (rotation, zoom, flips, brightness adjustments), and normalized pixel values.
+3. **Model Training**:
+   - Utilized EfficientNetB0, leveraging transfer learning with ImageNet weights.
+   - Applied class weighting to handle class imbalance.
+4. **Evaluation**:
+   - Analyzed classification metrics, confusion matrix, and ROC curves.
+5. **Prediction**:
+   - Predicted disease class for test data and saved the output as a CSV.
 
 ---
 ## Results
