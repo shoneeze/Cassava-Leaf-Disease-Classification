@@ -7,7 +7,7 @@ This repository contains a deep learning approach to classify cassava leaves int
 Cassava is a staple crop for over 800 million people worldwide. However, diseases like Mosaic and Bacterial Blight can reduce yields by up to 40%, impacting food security and livelihoods.
 
 This project proposes a deep learning model that:
-- Identifies leaf diseases with ~85% accuracy.
+- Identifies leaf diseases with ~70–80% accuracy.
 - Helps farmers take timely actions, reducing losses.
 
 ## Dataset
