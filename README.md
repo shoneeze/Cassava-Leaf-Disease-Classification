@@ -1,5 +1,5 @@
 # Cassava-Leaf-Disease-Classification
-This project focuses on detecting and classifying cassava leaf diseases using ML. The EfficientNetB0 model is trained on a dataset with five classes of diseases to help farmers improve crop yield through early detection.
+This repository contains a deep learning approach to classify cassava leaves into five disease categories using an EfficientNet-based model.
 
 ---
 ### Business Context
@@ -11,6 +11,8 @@ This project proposes a deep learning model that:
 - Helps farmers take timely actions, reducing losses.
 ---
 ## Dataset
+Source: [Cassava Leaf Disease Dataset on Kaggle](https://www.kaggle.com/c/cassava-leaf-disease-classification)
+
 The dataset contains images of cassava leaves classified into five categories:
 1. Healthy
 2. Cassava Mosaic Disease
@@ -18,33 +20,46 @@ The dataset contains images of cassava leaves classified into five categories:
 4. Cassava Brown Streak Disease
 5. Cassava Green Mite Damage
 
-Source: [Cassava Leaf Disease Dataset on Kaggle](https://www.kaggle.com/c/cassava-leaf-disease-classification)
-
 ---
 
 ## Pipeline
 1. **Exploratory Data Analysis**:
-   - Visualized class imbalance and confirmed uniform image dimensions.
+   - Visualized class imbalance
+   - Confirmed uniform image dimensions (various ~512×512 images).
 2. **Preprocessing**:
-   - Resized images to 256x256, applied data augmentation (rotation, zoom, flips, brightness adjustments), and normalized pixel values.
+   - Resized images to 256x256
+   - Applied data augmentation (rotation, zoom, flips, brightness adjustments)
+   - Normalized pixel values.
 3. **Model Training**:
-   - Utilized EfficientNetB0, leveraging transfer learning with ImageNet weights.
+   - EfficientNetB0 backbone with pretrained ImageNet weights (transfer learning).
+   - Added a custom classification head (global average pooling → dropout → dense layer).
    - Applied class weighting to handle class imbalance.
+   - Callbacks: ModelCheckpoint, EarlyStopping, and ReduceLROnPlateau.
 4. **Evaluation**:
-   - Analyzed classification metrics, confusion matrix, and ROC curves.
+   - Assessed training vs. validation performance across epochs.
+   - Analyzed confusion matrix and ROC curves for each class.
+   - Computed precision, recall, F1-score per class.
 5. **Prediction**:
    - Predicted disease class for test data and saved the output as a CSV.
 
 ---
 ## Results
-- **Accuracy**: 85% on validation data.
-- **Precision, Recall, F1-score**:
-  | Class               | Precision | Recall | F1-score |
-  |---------------------|-----------|--------|----------|
-  | Cassava Bacterial Blight | 0.83  | 0.80   | 0.82     |
-  | Cassava Brown Streak Disease | 0.80  | 0.79   | 0.79     |
-  | Cassava Green Mite | 0.88  | 0.86   | 0.87     |
-  | Healthy            | 0.92  | 0.90   | 0.91     |
-  | Mosaic Disease     | 0.75  | 0.78   | 0.76     |
+
+- **Training vs. Validation Accuracy**:
+- The model’s training accuracy reached approximately 70–80%, indicating it fit the training set reasonably well.
+- However, validation accuracy hovered around 30–40%, revealing a significant gap and overfitting.
+- Adjustments such as unfreezing more layers (for deeper fine-tuning), increasing dropout, and refining augmentations helped close this gap.
+- **Confusion Matrix**:
+- The confusion matrix shows the model tends to predict certain classes (often the majority class) more accurately while frequently misclassifying minority classes into that same dominant class.
+- This imbalance underscores overfitting and highlights the need for additional regularization or more balanced data.
+-  **ROC Curves**:
+Per-class ROC curves confirm that a few classes have moderate to fair discriminatory power, while others show poor separation, resulting in lower AUCs.
+Overall, the model struggles to distinguish among certain classes, reinforcing the need for additional improvements.
 
 ---
+
+## Next Steps
+- Unfreeze More Layers: Fine-tune deeper layers of EfficientNet with a lower learning rate to better adapt to cassava leaf characteristics.
+- Enhance Regularization: Increase dropout or L2 regularization to combat overfitting.
+- Data Augmentation: Try advanced methods like MixUp or CutMix or refine current augmentations for more variety.
+- Alternative Architectures: Consider a Vision Transformer or a larger EfficientNet variant (like B3)
