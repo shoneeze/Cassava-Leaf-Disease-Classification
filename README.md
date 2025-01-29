@@ -1,7 +1,7 @@
 # Cassava-Leaf-Disease-Classification
+
 This repository contains a deep learning approach to classify cassava leaves into five disease categories using an EfficientNet-based model.
 
----
 ### Business Context
 
 Cassava is a staple crop for over 800 million people worldwide. However, diseases like Mosaic and Bacterial Blight can reduce yields by up to 40%, impacting food security and livelihoods.
@@ -9,7 +9,7 @@ Cassava is a staple crop for over 800 million people worldwide. However, disease
 This project proposes a deep learning model that:
 - Identifies leaf diseases with ~85% accuracy.
 - Helps farmers take timely actions, reducing losses.
----
+
 ## Dataset
 Source: [Cassava Leaf Disease Dataset on Kaggle](https://www.kaggle.com/c/cassava-leaf-disease-classification)
 
@@ -19,8 +19,6 @@ The dataset contains images of cassava leaves classified into five categories:
 3. Cassava Bacterial Blight
 4. Cassava Brown Streak Disease
 5. Cassava Green Mite Damage
-
----
 
 ## Pipeline
 1. **Exploratory Data Analysis**:
@@ -32,7 +30,7 @@ The dataset contains images of cassava leaves classified into five categories:
    - Normalized pixel values.
 3. **Model Training**:
    - EfficientNetB0 backbone with pretrained ImageNet weights (transfer learning).
-   - Added a custom classification head (global average pooling → dropout → dense layer).
+   - Added a custom classification head which consists of a global average pooling (GAP) layer, followed by a dropout layer to reduce overfitting, and finally a fully connected (dense) layer that outputs the class predictions.
    - Applied class weighting to handle class imbalance.
    - Callbacks: ModelCheckpoint, EarlyStopping, and ReduceLROnPlateau.
 4. **Evaluation**:
@@ -41,22 +39,17 @@ The dataset contains images of cassava leaves classified into five categories:
    - Computed precision, recall, F1-score per class.
 5. **Prediction**:
    - Predicted disease class for test data and saved the output as a CSV.
-
----
 ## Results
 
-- **Training vs. Validation Accuracy**:
+**Training vs. Validation Accuracy**:
 - The model’s training accuracy reached approximately 70–80%, indicating it fit the training set reasonably well.
 - However, validation accuracy hovered around 30–40%, revealing a significant gap and overfitting.
-- Adjustments such as unfreezing more layers (for deeper fine-tuning), increasing dropout, and refining augmentations helped close this gap.
-- **Confusion Matrix**:
+**Confusion Matrix**:
 - The confusion matrix shows the model tends to predict certain classes (often the majority class) more accurately while frequently misclassifying minority classes into that same dominant class.
 - This imbalance underscores overfitting and highlights the need for additional regularization or more balanced data.
--  **ROC Curves**:
+**ROC Curves**:
 Per-class ROC curves confirm that a few classes have moderate to fair discriminatory power, while others show poor separation, resulting in lower AUCs.
 Overall, the model struggles to distinguish among certain classes, reinforcing the need for additional improvements.
-
----
 
 ## Next Steps
 - Unfreeze More Layers: Fine-tune deeper layers of EfficientNet with a lower learning rate to better adapt to cassava leaf characteristics.
