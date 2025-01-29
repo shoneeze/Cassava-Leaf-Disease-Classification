@@ -2,7 +2,7 @@
 
 This repository contains a deep learning approach to classify cassava leaves into five disease categories using an EfficientNet-based model.
 
-### Business Context
+## Business Context
 
 Cassava is a staple crop for over 800 million people worldwide. However, diseases like Mosaic and Bacterial Blight can reduce yields by up to 40%, impacting food security and livelihoods.
 
@@ -45,11 +45,16 @@ The dataset contains images of cassava leaves classified into five categories:
 - The model’s training accuracy reached approximately 70–80%, indicating it fit the training set reasonably well.
 - However, validation accuracy hovered around 30–40%, revealing a significant gap and overfitting.
 **Confusion Matrix**:
+  
+ <img width="819" alt="Screenshot 2025-01-29 at 3 28 53" src="https://github.com/user-attachments/assets/d2201cf7-cdd2-4131-8775-b3b424ddb7f0">
+
 - The confusion matrix shows the model tends to predict certain classes (often the majority class) more accurately while frequently misclassifying minority classes into that same dominant class.
 - This imbalance underscores overfitting and highlights the need for additional regularization or more balanced data.
 **ROC Curves**:
 Per-class ROC curves confirm that a few classes have moderate to fair discriminatory power, while others show poor separation, resulting in lower AUCs.
 Overall, the model struggles to distinguish among certain classes, reinforcing the need for additional improvements.
+
+<img width="819" alt="Screenshot 2025-01-29 at 1 31 44" src="https://github.com/user-attachments/assets/da3386e3-02e6-4b8a-a03f-bca4e3e96492">
 
 ## Next Steps
 - Unfreeze More Layers: Fine-tune deeper layers of EfficientNet with a lower learning rate to better adapt to cassava leaf characteristics.
